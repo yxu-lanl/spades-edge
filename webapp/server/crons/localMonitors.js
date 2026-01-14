@@ -54,9 +54,9 @@ const localWorkflowMonitor = async () => {
     const log = `${projHome}/log.txt`
     const pid = common.spawnCmd(cmd, log)
     if (pid) {
-      logger.info(`Started local job with PID: ${pid + 2}`)
+      logger.info(`Started local job with PID: ${pid + 1}`)
       const newJob = new Job({
-        pid: pid + 2,
+        pid: pid + 1,
         id: `local-${proj.code}`,
         project: proj.code,
         type: proj.type,
