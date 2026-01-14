@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import ProjectSummary from '/src/edge/project/results/ProjectSummary'
+import ProjectSummary from '../ProjectSummary'
 import { LoaderDialog } from '/src/edge/common/Dialogs'
 import { getData, apis } from '/src/edge/common/util'
 import ProjectResult from '../ProjectResult'
@@ -63,7 +63,6 @@ const Admin = (props) => {
       ) : (
         <>
           <ProjectSummary project={project} type={'admin'} />
-          <br></br>
           <ProjectResult project={project} type={'admin'} />
         </>
       )}

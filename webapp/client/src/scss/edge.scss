@@ -477,6 +477,16 @@ edge-button-sm:hover {
   font-size: 0.8rem;
 }
 
+//dataframe style for PATHOGENIC_INFO cell tooltip in Pathogen-annotated hits table
+.dataframe {
+  border: 1px solid $app;
+  border-collapse: collapse;
+  background-color: black;
+}
+.dataframe th, .dataframe td {
+  border: 1px solid $app;
+}
+
 //hide menu on topbar
 @media screen and (max-width: 450px) {
   .edge-header-nav-link {

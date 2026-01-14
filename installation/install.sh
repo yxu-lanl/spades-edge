@@ -87,7 +87,6 @@ echo "Setup LANL EDGE webapp ..."
 echo "install client..."
 cd $app_home/webapp/client
 npm install --legacy-peer-deps
-npm run build
 #install server
 echo "install server..."
 cd $app_home/webapp/server

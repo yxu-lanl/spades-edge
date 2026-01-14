@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import ProjectSummary from '/src/edge/project/results/ProjectSummary'
+import ProjectSummary from '../ProjectSummary'
 import { LoaderDialog } from '/src/edge/common/Dialogs'
 import { getData, apis } from '/src/edge/common/util'
 import ProjectResult from '../ProjectResult'
@@ -57,7 +57,6 @@ const User = (props) => {
       ) : (
         <>
           <ProjectSummary project={project} type={'user'} />
-          <br></br>
           <ProjectResult project={project} type={'user'} />
         </>
       )}
