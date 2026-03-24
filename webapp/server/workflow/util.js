@@ -2,6 +2,7 @@ const fs = require('fs')
 const ejs = require('ejs')
 const path = require('path')
 const Papa = require('papaparse')
+const { execCmd } = require('../utils/common')
 const config = require('../config')
 const workflowConfig = require('./config')
 
@@ -139,6 +140,26 @@ const getWorkflowCommand = proj => {
   return command
 }
 
+// The output zip file is in the <project home>/output dir, and the zip file name is defined in workflowList[workflow].zip_output
+const zipProjectOutputs = async proj => {
+  const projHome = `${config.IO.PROJECT_BASE_DIR}/${proj.code}`
+  const projectConf = JSON.parse(fs.readFileSync(`${projHome}/conf.json`))
+  if (workflowList[projectConf.workflow.name].zip_output) {
+    const zipOutputPath = `${projHome}/output/${workflowList[
+      projectConf.workflow.name
+    ].zip_output.replaceAll('<PROJECT>', proj.name.replace(/\s+/g, '_'))}`
+    if (fs.existsSync(zipOutputPath)) {
+      return zipOutputPath
+    }
+    const cmd = workflowList[projectConf.workflow.name].zip_output_cmd
+      .replaceAll('<PROJECT_HOME>', projHome)
+      .replaceAll('<ZIP_OUTPUT>', zipOutputPath)
+    await execCmd(cmd)
+    return zipOutputPath
+  }
+  return null
+}
+
 module.exports = {
   localWorkflows,
   cromwellWorkflows,
@@ -149,4 +170,5 @@ module.exports = {
   generateWorkflowResult,
   checkFlagFile,
   getWorkflowCommand,
+  zipProjectOutputs,
 }
