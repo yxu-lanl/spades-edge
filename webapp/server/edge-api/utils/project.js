@@ -180,7 +180,7 @@ const zipProjectOutputs = async (code, type, req) => {
   try {
     const proj = await getProject(code, type, req.user)
     if (!proj) {
-      return null
+      throw new Error('Project not found')
     }
     // generate tmp code and create tmp dir for zip file
     let tmp = randomize('Aa0', 8)
